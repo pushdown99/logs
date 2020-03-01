@@ -1,0 +1,13 @@
+logs:
+    - syslog
+    - kaa-node
+
+syslog:
+    file: /var/log/syslog 
+    host: debian.tric.kr
+    port: 4321
+
+kaa-node:
+    file: /var/log/kaa/kaa-node.log 
+    host: debian.tric.kr
+    port: 4321
