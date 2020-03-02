@@ -17,6 +17,15 @@ with open("logs-config.yaml", 'r') as stream:
 #
 # LOG CONFIGURATION
 #
+if not os.path.isdir("./conf"):
+  os.mkdir("./conf")
+
 for log in dict["logs"]:
-  print(log)
+
+  f = open("./conf/" + log, 'w')
+  d = "source=%s\n" % str(dict[log]["source"]).lower()
+  f.write(d)
+  d = "sink=%s\n" % str(dict[log]["sink"]).lower()
+  f.write(d)
+  f.close()
 
