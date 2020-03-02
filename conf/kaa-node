@@ -1,2 +1,2 @@
 source=/var/log/kaa/kaa-node.log
-sink=debian.tric.kr:4322
+sink=127.0.0.1:4321

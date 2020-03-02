@@ -26,58 +26,6 @@
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
-void getEvent(char* buffer, int length)
-{
-	int i = 0;
-
-    printf("getEvent\n");
-	while ( i < length ) {
-		struct inotify_event *event = (struct inotify_event *)&buffer[i];
-		if( event->len == 0) {
-			printf(" Single file watching event happened\n");
-            return;
-		} 
-		if ( event->mask & IN_CREATE ) {
-			if ( event->mask & IN_ISDIR ) {
-				printf( "New directory %s created.\n", event->name );
-			} else {
-				printf( "New file %s created.\n", event->name );
-			}
-		} 
-		if ( event->mask & IN_DELETE ) {
-			if ( event->mask & IN_ISDIR ) {
-				printf( "Directory %s deleted.\n", event->name );
-			} else {
-				printf( "File %s deleted.\n", event->name );
-			}
-		} 
-		if( event->mask & IN_ACCESS ) {
-			if ( event->mask & IN_ISDIR ) {
-				printf( "Directory %s accessed.\n", event->name );
-			} else {
-				printf(" File %s accessed. \n", event->name );
-			}
-		} 
-		if( event->mask & IN_MODIFY ) {
-			if ( event->mask & IN_ISDIR ) {
-				printf( "Directory %s modified.\n", event->name );
-			} else {
-				printf(" File %s modified. \n", event->name );
-			}
-		} 
-		if( event->mask & IN_OPEN ) {
-			if ( event->mask & IN_ISDIR ) {
-				printf( "Directory %s opened.\n", event->name );
-			} else {
-				printf(" File %s opened. \n", event->name );
-			}
-		} else {
-			printf( "Directory or File is accessed by other mode\n");
-		}
-		i += EVENT_SIZE + event->len;
-	}
-}
-
 void*
 probe_task (void* args)
 {
@@ -141,7 +89,6 @@ probe_task (void* args)
 			continue;
 		}
 
-		printf("Event\n");
 		if(FD_ISSET(id, &fds)) {
 			if((length = read(id, buffer, EVENT_BUF_LEN)) < 0) {
 				perror( "read" );

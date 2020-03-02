@@ -4,10 +4,10 @@ logs:
 
 syslog:
     source: /var/log/syslog 
-    sink: debian.tric.kr:4321
-    capacity: 10
+    #sink: debian.tric.kr:4321
+    sink: 127.0.0.1:4321
 
 kaa-node:
     source: /var/log/kaa/kaa-node.log 
-    sink: debian.tric.kr:4322
-    capacity: 10
+    #sink: debian.tric.kr:4322
+    sink: 127.0.0.1:4321

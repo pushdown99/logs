@@ -1,2 +1,2 @@
 source=/var/log/syslog
-sink=debian.tric.kr:4321
+sink=127.0.0.1:4321
