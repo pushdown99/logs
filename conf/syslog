@@ -1,2 +1,0 @@
-source=/var/log/syslog
-sink=127.0.0.1:4321

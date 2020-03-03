@@ -22,3 +22,5 @@ dep:
 clean:
 	rm -rf $(OBJS) $(TARGET) core
 
+install:
+	cp $(TARGET) ../../bin

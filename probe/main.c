@@ -102,7 +102,7 @@ probe_task (void* args)
     }
 }
 
-#define MAX_THREAD		16
+#define MAX_THREAD	16
 
 pthread_t t_id[MAX_THREAD];
 int num_of_pthread = 0;

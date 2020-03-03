@@ -17,12 +17,14 @@ with open("logs-config.yaml", 'r') as stream:
 #
 # LOG CONFIGURATION
 #
-if not os.path.isdir("./conf"):
-  os.mkdir("./conf")
+conf = "/opt/radix/conf/"
+
+if not os.path.isdir(conf):
+  os.mkdir(conf)
 
 for log in dict["logs"]:
 
-  f = open("./conf/" + log, 'w')
+  f = open(conf + log, 'w')
   d = "source=%s\n" % str(dict[log]["source"]).lower()
   f.write(d)
   d = "sink=%s\n" % str(dict[log]["sink"]).lower()
