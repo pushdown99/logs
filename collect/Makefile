@@ -1,5 +1,5 @@
 CC   = gcc
-INC  = -I../lib
+INC  = -I../../lib
 LIBS =
 CFLAGS = -ggdb $(INC) 
 
@@ -7,7 +7,7 @@ SRCS= \
 	main.c 
 
 OBJS=$(SRCS:.c=.o)
-LIBS=-L../lib -lpopup -lpthread
+LIBS=-L../../lib -lpopup -lpthread
 
 TARGET=log-collect
 

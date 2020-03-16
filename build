@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd probe
+make clean all install
+cd ..
+
+cd collect
+make clean all install
+cd ..
+
+cd sink
+make clean all install
+cd ..
+

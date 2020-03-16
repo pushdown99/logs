@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     struct timeval tm;
     DIR *dp = NULL;
 	struct dirent *file = NULL;
-	char dir[] = "../conf/";
+	char dir[] = "/opt/radix/probe/";
 	char buffer[BUFSIZ];
 	char f[BUFSIZ], v[BUFSIZ];
 	uint16_t port;
@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 	    port = atoi(v);
 
 		if((lfd = udpsock(port)) > 0) {
+			printf("lfd = %d\n", lfd);
 			FD_SET(lfd, &rfds);
 			maxfd = MAX(maxfd, lfd);
 		}
@@ -65,7 +66,7 @@ int main(int argc, char *argv[])
 	if(mkdir("logs", 0776) == -1 && errno != EEXIST) { 
 		fprintf(stderr, "directory create error: %s\n", strerror(errno)); return -1; 
 	}
-    if (initlog(LOG_COLLECT, "logs", "kaa", "log-collect", LOG_0, LOG_FILE | LOG_CONSOLE, MODE_PATH)<=0) {
+    if (initlog(LOG_COLLECT, "/opt/radix/logs", "kaa", "log-collect", LOG_0, LOG_FILE, MODE_PATH)<=0) {
         printf("\nLog Init Fail\n");
         exit(0);
     }
@@ -80,11 +81,11 @@ int main(int argc, char *argv[])
 			continue;
 		}
 
-		for(int fd = 0; fd <= maxfd; fd++) {
+		for(int fd = 3; fd <= maxfd; fd++) {
 			if(FD_ISSET(fd,&fds)) {
 				bzero(buffer, BUFSIZ);
 				if((nbyte = recvfrom(fd, buffer, BUFSIZ, 0, (struct sockaddr*)&sin, &slen)) > 0) {
-					//printf("[C] %s", buffer);
+					printf("[C] %s", buffer);
 					lprintf(LOG_COLLECT, LOG_0, "%s" , buffer);
 				}	
 			}

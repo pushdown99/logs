@@ -9,7 +9,7 @@ SRCS= \
 OBJS=$(SRCS:.c=.o)
 LIBS=-L../../lib -lpopup -lpthread
 
-TARGET=log-probe
+TARGET=log-sink
 
 all: $(TARGET)
 

@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     DIR *dp = NULL;
 	struct dirent *file = NULL;
 	void* resp;
-	char dir[] = "../conf/";
+	char dir[] = "/opt/radix/probe/";
 	char f[BUFSIZ];
 
     if((dp=opendir(dir)) == NULL) {
